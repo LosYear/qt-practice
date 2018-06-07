@@ -22,7 +22,12 @@ private:
     Ui::MainWindow *ui;
 
 public slots:
-    void enterRoom(int room);
+    void enterRoom(int roomNumber);
+private slots:
+    void on_goWestButton_clicked();
+    void on_goNorthButton_clicked();
+    void on_goSouthButton_clicked();
+    void on_goEastButton_clicked();
 };
 
 #endif // MAINWINDOW_H

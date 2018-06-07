@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>529</width>
+    <width>552</width>
     <height>404</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="directionsLayout">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
@@ -33,9 +33,15 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="roomDescriptionLabel">
           <property name="text">
            <string>----ОПИСАНИЕ --</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -62,22 +68,22 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
+           <layout class="QVBoxLayout" name="leftDirectionLayout">
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="goWestButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>Запад</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="middleDirectionLayout">
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="goNorthButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>Север</string>
               </property>
              </widget>
             </item>
@@ -98,20 +104,20 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="goSouthButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>Юг</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="rightDirectionLayout">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="goEastButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>Восток</string>
               </property>
              </widget>
             </item>
@@ -120,6 +126,22 @@
          </layout>
         </item>
        </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>30</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -131,7 +153,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_5">
+         <widget class="QLabel" name="heroNameLabel">
           <property name="text">
            <string>--ИМЯ--</string>
           </property>
@@ -145,7 +167,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QProgressBar" name="progressBar">
+         <widget class="QProgressBar" name="healthBar">
           <property name="value">
            <number>24</number>
           </property>
@@ -161,7 +183,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLCDNumber" name="lcdNumber"/>
+           <widget class="QLCDNumber" name="moneyCounter">
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -173,12 +199,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QListView" name="listView"/>
+         <widget class="QListView" name="itemsList"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="buyButton">
           <property name="text">
-           <string>PushButton</string>
+           <string>Купить</string>
           </property>
          </widget>
         </item>
