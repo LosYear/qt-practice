@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "shopwindow.h"
 
 MainWindow::MainWindow(Game* _game, QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,7 @@ MainWindow::MainWindow(Game* _game, QWidget *parent) :
     enterRoom(0);
 
     // Connect slots and signals
+    QObject::connect(&game->hero, SIGNAL(money_changed(int)), this->ui->moneyCounter, SLOT(display(int)));
     QObject::connect(&game->hero, SIGNAL(hero_moved(int)), this, SLOT(enterRoom(int)));
 }
 
@@ -93,4 +95,10 @@ void MainWindow::on_goSouthButton_clicked()
 void MainWindow::on_goEastButton_clicked()
 {
     game->hero.move(Direction::East);
+}
+
+void MainWindow::on_openShopButton_clicked()
+{
+    ShopWindow shop(&game->hero);
+    shop.exec();
 }

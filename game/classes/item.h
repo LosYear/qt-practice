@@ -9,8 +9,8 @@ class Item
 public:
     Item(QString name, QString description);
 
-    const QString getName();
-    const QString getDescription();
+    const QString getName() const;
+    const QString getDescription() const;
 
     virtual void consume(Hero* hero){};
     virtual bool useOnce() const;

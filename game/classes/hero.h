@@ -19,6 +19,8 @@ public:
     void move(Direction direction);
     void addItem(QSharedPointer<Item> item);
     const QList<QSharedPointer<Item> > &getItems() const;
+    bool changeMoney(int delta);
+    int getMoney() const;
 
     Maze* maze;
     int currentRoom;
@@ -32,6 +34,7 @@ public:
 
 signals:
     void hero_moved(int room);
+    void money_changed(int money);
 
 public slots:
 };

@@ -27,6 +27,7 @@ private slots:
     void on_goSouthButton_clicked();
     void on_goEastButton_clicked();
     void enterRoom(int roomNumber);
+    void on_openShopButton_clicked();
 };
 
 #endif // MAINWINDOW_H

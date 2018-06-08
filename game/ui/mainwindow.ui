@@ -206,9 +206,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="buyButton">
+         <widget class="QPushButton" name="openShopButton">
           <property name="text">
-           <string>Купить</string>
+           <string>Магазин</string>
           </property>
          </widget>
         </item>

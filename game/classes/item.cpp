@@ -6,12 +6,12 @@ Item::Item(QString name, QString description):
 
 }
 
-const QString Item::getName()
+const QString Item::getName() const
 {
     return _name;
 }
 
-const QString Item::getDescription()
+const QString Item::getDescription() const
 {
     return _description;
 }

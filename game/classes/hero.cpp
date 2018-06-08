@@ -30,6 +30,23 @@ const QList<QSharedPointer<Item> > &Hero::getItems() const
     return inventory;
 }
 
+bool Hero::changeMoney(int delta)
+{
+    if(money - delta < 0){
+        return false;
+    }
+
+
+    money -= delta;
+    emit money_changed(money);
+    return true;
+}
+
+int Hero::getMoney() const
+{
+    return money;;
+}
+
 int Hero::rowCount(const QModelIndex &parent) const
 {
     return inventory.count();
