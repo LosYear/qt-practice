@@ -11,3 +11,11 @@ Game::Game(QString name) :
                                               "Увеличивает жизнь на 1",
                                               1));
 }
+
+void Game::peekItem(int itemIndex)
+{
+    int room = hero.currentRoom;
+
+    QSharedPointer<Item> item = maze[room].peekItem(itemIndex);
+    item->peek(&hero);
+}

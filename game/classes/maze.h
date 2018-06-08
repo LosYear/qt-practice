@@ -9,7 +9,7 @@ public:
     Maze();
 
     QList<Room> rooms;
-    const Room& operator[](int index) const;
+    Room& operator[](int index);
 private:
     void _init();
 };

@@ -1,4 +1,6 @@
 #include "maze.h"
+#include "food.h"
+#include "gold.h"
 
 Maze::Maze()
 {
@@ -16,8 +18,11 @@ void Maze::_init()
     rooms.append(Room("Кабинет", "Вы стоите в кабинете."
                                  " Книжный шкаф полон старинных книг",
                       -1, 1, -1, -1));
+    rooms[0].items.append(QSharedPointer<Gold>::create("Мешочек с золотом", "", -20));
+    rooms[1].items.append(QSharedPointer<Food>::create("Обед", "+15 к здоровью", 15));
+    rooms[2].items.append(QSharedPointer<Food>::create("Ужин", "+15 к здоровью", 15));
 }
 
-const Room& Maze::operator[](int index) const{
+Room& Maze::operator[](int index){
     return rooms[index];
 }

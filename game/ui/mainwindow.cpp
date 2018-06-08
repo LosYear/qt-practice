@@ -75,6 +75,13 @@ void MainWindow::enterRoom(int roomNumber)
     else{
         ui->goSouthButton->hide();
     }
+
+    // Show items
+    ui->roomItems->clear();
+
+    for(auto it = game->maze[roomNumber].items.begin(); it != game->maze[roomNumber].items.end(); ++it){
+        ui->roomItems->addItem((*it)->getName());
+    }
 }
 
 
@@ -109,4 +116,11 @@ void MainWindow::on_itemsList_doubleClicked(const QModelIndex &index)
     if(index.isValid()){
        game->hero.useItem(index.row());
     }
+}
+
+void MainWindow::on_roomItems_itemDoubleClicked(QListWidgetItem *item)
+{
+    int index = ui->roomItems->currentRow();
+    ui->roomItems->takeItem(index);
+    game->peekItem(index);
 }

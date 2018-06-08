@@ -33,7 +33,8 @@ SOURCES += \
     classes/item.cpp \
     classes/food.cpp \
     ui/shopwindow.cpp \
-    classes/shop.cpp
+    classes/shop.cpp \
+    classes/gold.cpp
 
 HEADERS += \
         ui/mainwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     classes/item.h \
     classes/food.h \
     ui/shopwindow.h \
-    classes/shop.h
+    classes/shop.h \
+    classes/gold.h
 
 FORMS += \
         ui/mainwindow.ui \

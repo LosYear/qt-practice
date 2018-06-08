@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidgetItem>
 #include "../classes/game.h"
 
 namespace Ui {
@@ -29,6 +30,7 @@ private slots:
     void enterRoom(int roomNumber);
     void on_openShopButton_clicked();
     void on_itemsList_doubleClicked(const QModelIndex &index);
+    void on_roomItems_itemDoubleClicked(QListWidgetItem *item);
 };
 
 #endif // MAINWINDOW_H

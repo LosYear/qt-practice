@@ -1,4 +1,5 @@
 #include "item.h"
+#include "hero.h"
 
 Item::Item(QString name, QString description):
     _name(name), _description(description)
@@ -19,4 +20,9 @@ const QString Item::getDescription() const
 bool Item::useOnce() const
 {
     return false;
+}
+
+void Item::peek(Hero *hero)
+{
+    hero->addItem(sharedFromThis());
 }

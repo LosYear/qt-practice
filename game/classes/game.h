@@ -13,6 +13,8 @@ public:
     Hero hero;
     Maze maze;
 
+    void peekItem(int itemIndex);
+
 };
 
 #endif // GAME_H

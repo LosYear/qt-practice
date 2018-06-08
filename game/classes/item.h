@@ -1,10 +1,11 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <QString>
+#include <QEnableSharedFromThis>
 
 class Hero;
 
-class Item
+class Item : public QEnableSharedFromThis<Item>
 {
 public:
     Item(QString name, QString description);
@@ -14,6 +15,7 @@ public:
 
     virtual void consume(Hero* hero){};
     virtual bool useOnce() const;
+    virtual void peek(Hero* hero);
 protected:
     QString _name;
     QString _description;
