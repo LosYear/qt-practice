@@ -29,7 +29,9 @@ SOURCES += \
     classes/room.cpp \
     classes/maze.cpp \
     classes/hero.cpp \
-    classes/game.cpp
+    classes/game.cpp \
+    classes/item.cpp \
+    classes/food.cpp
 
 HEADERS += \
         ui/mainwindow.h \
@@ -37,7 +39,9 @@ HEADERS += \
     classes/direction.h \
     classes/maze.h \
     classes/hero.h \
-    classes/game.h
+    classes/game.h \
+    classes/item.h \
+    classes/food.h
 
 FORMS += \
         ui/mainwindow.ui

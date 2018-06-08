@@ -1,6 +1,6 @@
 #include "hero.h"
 
-Hero::Hero(Maze* _maze, QString _name, QObject *parent) : QObject(parent)
+Hero::Hero(Maze* _maze, QString _name, QObject *parent) : QAbstractListModel(parent)
 {
     maze = _maze;
     currentRoom = 0;
@@ -14,4 +14,43 @@ void Hero::move(Direction direction)
     currentRoom = (*maze)[currentRoom][direction];
 
     emit hero_moved(currentRoom);
+}
+
+void Hero::addItem(QSharedPointer<Item> item)
+{
+    beginResetModel();
+
+    inventory.append(item);
+
+    endResetModel();
+}
+
+const QList<QSharedPointer<Item> > &Hero::getItems() const
+{
+    return inventory;
+}
+
+int Hero::rowCount(const QModelIndex &parent) const
+{
+    return inventory.count();
+}
+
+QVariant Hero::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid()){
+            return QVariant();
+    }
+
+    if (index.row() < 0 || index.row() >= inventory.size()){
+           return QVariant();
+    }
+
+     if (role == Qt::DisplayRole){
+        return inventory[index.row()]->getName();
+     }
+     else if(role == Qt::ToolTipRole){
+        return inventory[index.row()]->getDescription();
+     }
+
+    return QVariant();
 }

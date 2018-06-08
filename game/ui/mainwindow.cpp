@@ -7,6 +7,7 @@ MainWindow::MainWindow(Game* _game, QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->itemsList->setModel(&game->hero);
 
     // No resize on hide
     QSizePolicy sp_retain = ui->goEastButton->sizePolicy();
@@ -72,6 +73,7 @@ void MainWindow::enterRoom(int roomNumber)
         ui->goSouthButton->hide();
     }
 }
+
 
 void MainWindow::on_goWestButton_clicked()
 {

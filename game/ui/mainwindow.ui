@@ -199,7 +199,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QListView" name="itemsList"/>
+         <widget class="QListView" name="itemsList">
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="buyButton">
