@@ -1,6 +1,7 @@
 #ifndef FOOD_H
 #define FOOD_H
 #include "item.h"
+#include "hero.h"
 
 class Food : public Item
 {
@@ -10,6 +11,7 @@ public:
     const int delta;
 
     bool useOnce() const;
+    void consume(Hero* hero);
 };
 
 #endif // FOOD_H

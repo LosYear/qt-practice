@@ -10,3 +10,8 @@ bool Food::useOnce() const
 {
     return true;
 }
+
+void Food::consume(Hero *hero)
+{
+    hero->changeHealth(delta);
+}

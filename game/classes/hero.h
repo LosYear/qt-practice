@@ -21,10 +21,13 @@ public:
     const QList<QSharedPointer<Item> > &getItems() const;
     bool changeMoney(int delta);
     int getMoney() const;
+    int getHealth() const;
+    void changeHealth(int health_delta);
+    void useItem(int index);
 
     Maze* maze;
     int currentRoom;
-    int healt;
+    int health;
     int money;
     QString name;
     QList<QSharedPointer<Item>> inventory;
@@ -35,6 +38,7 @@ public:
 signals:
     void hero_moved(int room);
     void money_changed(int money);
+    void health_changed(int health);
 
 public slots:
 };

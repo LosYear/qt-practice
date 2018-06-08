@@ -28,6 +28,7 @@ private slots:
     void on_goEastButton_clicked();
     void enterRoom(int roomNumber);
     void on_openShopButton_clicked();
+    void on_itemsList_doubleClicked(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

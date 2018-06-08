@@ -4,7 +4,7 @@ Hero::Hero(Maze* _maze, QString _name, QObject *parent) : QAbstractListModel(par
 {
     maze = _maze;
     currentRoom = 0;
-    healt = 100;
+    health = 50;
     money = 50;
     name = _name;
 }
@@ -45,6 +45,34 @@ bool Hero::changeMoney(int delta)
 int Hero::getMoney() const
 {
     return money;;
+}
+
+int Hero::getHealth() const
+{
+    return health;
+}
+
+void Hero::changeHealth(int health_delta)
+{
+    if(health + health_delta > 100){
+        health = 100;
+    }
+    else{
+        health += health_delta;
+    }
+
+    emit health_changed(health);
+}
+
+void Hero::useItem(int index)
+{
+    inventory[index]->consume(this);
+
+    if(inventory[index]->useOnce()){
+        beginResetModel();
+        inventory.removeAt(index);
+        endResetModel();
+    }
 }
 
 int Hero::rowCount(const QModelIndex &parent) const

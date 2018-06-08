@@ -23,6 +23,7 @@ MainWindow::MainWindow(Game* _game, QWidget *parent) :
     // Connect slots and signals
     QObject::connect(&game->hero, SIGNAL(money_changed(int)), this->ui->moneyCounter, SLOT(display(int)));
     QObject::connect(&game->hero, SIGNAL(hero_moved(int)), this, SLOT(enterRoom(int)));
+    QObject::connect(&game->hero, SIGNAL(health_changed(int)), ui->healthBar, SLOT(setValue(int)));
 }
 
 MainWindow::~MainWindow()
@@ -34,7 +35,7 @@ void MainWindow::enterRoom(int roomNumber)
 {
     // Set info
     ui->heroNameLabel->setText(game->hero.name);
-    ui->healthBar->setValue(game->hero.healt);
+    ui->healthBar->setValue(game->hero.health);
     ui->moneyCounter->display(game->hero.money);
 
     // Set room info
@@ -101,4 +102,11 @@ void MainWindow::on_openShopButton_clicked()
 {
     ShopWindow shop(&game->hero);
     shop.exec();
+}
+
+void MainWindow::on_itemsList_doubleClicked(const QModelIndex &index)
+{
+    if(index.isValid()){
+       game->hero.useItem(index.row());
+    }
 }
