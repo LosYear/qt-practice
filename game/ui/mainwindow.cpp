@@ -8,7 +8,7 @@ MainWindow::MainWindow(Game* _game, QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->itemsList->setModel(&game->hero);
+    ui->itemsList->setModel(game->hero.getModel());
 
     // No resize on hide
     QSizePolicy sp_retain = ui->goEastButton->sizePolicy();

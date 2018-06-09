@@ -34,7 +34,12 @@ SOURCES += \
     classes/food.cpp \
     ui/shopwindow.cpp \
     classes/shop.cpp \
-    classes/gold.cpp
+    classes/gold.cpp \
+    classes/weapon.cpp \
+    classes/shield.cpp \
+    classes/actor.cpp \
+    classes/enemy.cpp \
+    classes/battle.cpp
 
 HEADERS += \
         ui/mainwindow.h \
@@ -47,7 +52,12 @@ HEADERS += \
     classes/food.h \
     ui/shopwindow.h \
     classes/shop.h \
-    classes/gold.h
+    classes/gold.h \
+    classes/weapon.h \
+    classes/shield.h \
+    classes/actor.h \
+    classes/enemy.h \
+    classes/battle.h
 
 FORMS += \
         ui/mainwindow.ui \

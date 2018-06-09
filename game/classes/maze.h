@@ -3,15 +3,18 @@
 #include <QList>
 #include "room.h"
 
+class Game;
+
 class Maze
 {
 public:
-    Maze();
+    Maze(Game* game);
 
     QList<Room> rooms;
     Room& operator[](int index);
 private:
-    void _init();
+    void _init(Game *game);
+    Game* game;
 };
 
 #endif // MAZE_H

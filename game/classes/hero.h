@@ -9,8 +9,11 @@
 #include <QVariant>
 #include "maze.h"
 #include "item.h"
+#include "actor.h"
 
-class Hero : public QAbstractListModel
+class HeroModel;
+
+class Hero : public Actor
 {
     Q_OBJECT
 public:
@@ -21,26 +24,35 @@ public:
     const QList<QSharedPointer<Item> > &getItems() const;
     bool changeMoney(int delta);
     int getMoney() const;
-    int getHealth() const;
-    void changeHealth(int health_delta);
     void useItem(int index);
 
     Maze* maze;
     int currentRoom;
-    int health;
     int money;
-    QString name;
     QList<QSharedPointer<Item>> inventory;
 
-    int rowCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
+    HeroModel* getModel() const;
+    int getShield() const;
+    int getDamage() const;
 
 signals:
     void hero_moved(int room);
     void money_changed(int money);
-    void health_changed(int health);
 
 public slots:
+private:
+    HeroModel* model;
+};
+
+class HeroModel : public QAbstractListModel{
+    friend class Hero;
+public:
+    HeroModel(Hero* h);
+
+    int rowCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
+private:
+    Hero* hero;
 };
 
 #endif // HERO_H

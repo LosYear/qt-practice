@@ -1,12 +1,14 @@
 #include "hero.h"
+#include "shield.h"
+#include "weapon.h"
 
-Hero::Hero(Maze* _maze, QString _name, QObject *parent) : QAbstractListModel(parent)
+Hero::Hero(Maze* _maze, QString _name, QObject *parent) : Actor(_name, 70, parent)
 {
     maze = _maze;
     currentRoom = 0;
-    health = 50;
     money = 50;
-    name = _name;
+
+    model = new HeroModel(this);
 }
 
 void Hero::move(Direction direction)
@@ -18,11 +20,11 @@ void Hero::move(Direction direction)
 
 void Hero::addItem(QSharedPointer<Item> item)
 {
-    beginResetModel();
+    model->beginResetModel();
 
     inventory.append(item);
 
-    endResetModel();
+    model->endResetModel();
 }
 
 const QList<QSharedPointer<Item> > &Hero::getItems() const
@@ -47,55 +49,72 @@ int Hero::getMoney() const
     return money;;
 }
 
-int Hero::getHealth() const
-{
-    return health;
-}
-
-void Hero::changeHealth(int health_delta)
-{
-    if(health + health_delta > 100){
-        health = 100;
-    }
-    else{
-        health += health_delta;
-    }
-
-    emit health_changed(health);
-}
-
 void Hero::useItem(int index)
 {
     inventory[index]->consume(this);
 
     if(inventory[index]->useOnce()){
-        beginResetModel();
+        model->beginResetModel();
         inventory.removeAt(index);
-        endResetModel();
+        model->endResetModel();
     }
 }
 
-int Hero::rowCount(const QModelIndex &parent) const
+HeroModel *Hero::getModel() const
 {
-    return inventory.count();
+    return model;
 }
 
-QVariant Hero::data(const QModelIndex &index, int role) const
+int Hero::getShield() const
+{
+    int max = 0;
+    for(int i = 0; i < inventory.size(); ++i){
+        Shield* s = dynamic_cast<Shield*>(inventory[i].get());
+
+        if (s != nullptr && max < s->getShield()){
+            max = s->getShield();
+        }
+    }
+}
+
+int Hero::getDamage() const
+{
+    int max = 3;
+    for(int i = 0; i < inventory.size(); ++i){
+        Weapon* s = dynamic_cast<Weapon*>(inventory[i].get());
+
+        if (s != nullptr && max < s->getDamage()){
+            max = s->getDamage();
+        }
+    }
+}
+
+int HeroModel::rowCount(const QModelIndex &parent) const
+{
+    return hero->inventory.count();
+}
+
+QVariant HeroModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()){
             return QVariant();
     }
 
-    if (index.row() < 0 || index.row() >= inventory.size()){
+    if (index.row() < 0 || index.row() >= hero->inventory.size()){
            return QVariant();
     }
 
      if (role == Qt::DisplayRole){
-        return inventory[index.row()]->getName();
+        return hero->inventory[index.row()]->getName();
      }
      else if(role == Qt::ToolTipRole){
-        return inventory[index.row()]->getDescription();
+        return hero->inventory[index.row()]->getDescription();
      }
 
     return QVariant();
+}
+
+HeroModel::HeroModel(Hero *h) : hero(h)
+{
+
 }

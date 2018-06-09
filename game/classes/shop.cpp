@@ -1,5 +1,7 @@
 #include "shop.h"
 #include "food.h"
+#include "weapon.h"
+#include "shield.h"
 
 Shop::Shop()
 {
@@ -7,6 +9,9 @@ Shop::Shop()
     items.append(QPair<int, QSharedPointer<Item>>(1, QSharedPointer<Food>::create("Хлеб", "+5", 5)));
     items.append(QPair<int, QSharedPointer<Item>>(10, QSharedPointer<Food>::create("Болотный эликсир", "+7", 7)));
     items.append(QPair<int, QSharedPointer<Item>>(10, QSharedPointer<Food>::create("Яд", "Для отважных (-50)", -50)));
+
+    items.append(QPair<int, QSharedPointer<Shield>>(10, QSharedPointer<Shield>::create("Кусок картона", "Защищает в решающих сражениях", 10)));
+    items.append(QPair<int, QSharedPointer<Weapon>>(10, QSharedPointer<Weapon>::create("Деревянное нечто", "Убивает в решающих сражениях", 10)));
 }
 
 int Shop::rowCount(const QModelIndex &parent) const

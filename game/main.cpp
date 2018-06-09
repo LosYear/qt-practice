@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-
-    Game* game = new Game(QInputDialog::getText(nullptr, "Имя", "Введите имя игрока")); // @TODO: memory leak
+    QString name = QInputDialog::getText(nullptr, "Имя", "Введите имя игрока");
+    Game* game = new Game(name); // @TODO: memory leak
 
     MainWindow w(game);
     w.show();
