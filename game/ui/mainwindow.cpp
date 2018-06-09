@@ -1,6 +1,8 @@
+#include <QMessageBox>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "shopwindow.h"
+#include "battledialog.h"
 
 MainWindow::MainWindow(Game* _game, QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +26,8 @@ MainWindow::MainWindow(Game* _game, QWidget *parent) :
     QObject::connect(&game->hero, SIGNAL(money_changed(int)), this->ui->moneyCounter, SLOT(display(int)));
     QObject::connect(&game->hero, SIGNAL(hero_moved(int)), this, SLOT(enterRoom(int)));
     QObject::connect(&game->hero, SIGNAL(health_changed(int)), ui->healthBar, SLOT(setValue(int)));
+    QObject::connect(game, SIGNAL(battle_started(Battle*)), this, SLOT(battleStarted(Battle*)));
+    QObject::connect(game, SIGNAL(game_over(bool)), this, SLOT(gameOver(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -82,6 +86,10 @@ void MainWindow::enterRoom(int roomNumber)
     for(auto it = game->maze[roomNumber].items.begin(); it != game->maze[roomNumber].items.end(); ++it){
         ui->roomItems->addItem((*it)->getName());
     }
+
+    if(roomNumber == game->maze.rooms.size() - 1){
+        gameOver(true);
+    }
 }
 
 
@@ -123,4 +131,21 @@ void MainWindow::on_roomItems_itemDoubleClicked(QListWidgetItem *item)
     int index = ui->roomItems->currentRow();
     ui->roomItems->takeItem(index);
     game->peekItem(index);
+}
+
+void MainWindow::battleStarted(Battle *battle)
+{
+    BattleDialog d(battle, this);
+    d.exec();
+}
+
+void MainWindow::gameOver(bool result)
+{
+    QMessageBox msg;
+    msg.setText("Вы проиграли");
+    if(result){
+        msg.setText("Вы выиграли");
+    }
+    msg.exec();
+    this->close();
 }

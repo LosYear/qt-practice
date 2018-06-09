@@ -14,6 +14,7 @@ public:
 
     int getHealth() const;
     void changeHealth(int health_delta);
+    bool isAlive() const;
 
     virtual int getShield() const = 0;
     virtual int getDamage() const = 0;

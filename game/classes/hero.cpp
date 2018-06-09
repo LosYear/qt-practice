@@ -75,6 +75,8 @@ int Hero::getShield() const
             max = s->getShield();
         }
     }
+
+    return max;
 }
 
 int Hero::getDamage() const
@@ -87,6 +89,8 @@ int Hero::getDamage() const
             max = s->getDamage();
         }
     }
+
+    return max;
 }
 
 int HeroModel::rowCount(const QModelIndex &parent) const

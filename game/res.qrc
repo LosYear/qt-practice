@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>assets/shield_and_swords.png</file>
+    </qresource>
+</RCC>

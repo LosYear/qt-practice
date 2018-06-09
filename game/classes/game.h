@@ -28,6 +28,7 @@ public:
 
 signals:
     void battle_started(Battle* battle);
+    void game_over(bool result);
 
 public slots:
     void heroMoved(int room);

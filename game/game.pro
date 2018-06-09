@@ -39,7 +39,8 @@ SOURCES += \
     classes/shield.cpp \
     classes/actor.cpp \
     classes/enemy.cpp \
-    classes/battle.cpp
+    classes/battle.cpp \
+    ui/battledialog.cpp
 
 HEADERS += \
         ui/mainwindow.h \
@@ -57,8 +58,13 @@ HEADERS += \
     classes/shield.h \
     classes/actor.h \
     classes/enemy.h \
-    classes/battle.h
+    classes/battle.h \
+    ui/battledialog.h
 
 FORMS += \
         ui/mainwindow.ui \
-    ui/shopwindow.ui
+    ui/shopwindow.ui \
+    ui/battledialog.ui
+
+RESOURCES += \
+    res.qrc

@@ -21,5 +21,14 @@ void Actor::changeHealth(int health_delta)
         health += health_delta;
     }
 
+    if(health < 0){
+        health = 0;
+    }
+
     emit health_changed(health);
+}
+
+bool Actor::isAlive() const
+{
+    return health > 0;
 }

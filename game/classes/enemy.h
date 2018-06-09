@@ -7,7 +7,7 @@ class Enemy : public Actor
     Q_OBJECT
 public:
     Enemy(QString name, int health, int d, int shield,
-          int prob, QObject* parent);
+          int prob, QObject* parent = nullptr);
 
     const int damage;
     const int shieldLevel;

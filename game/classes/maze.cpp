@@ -23,9 +23,6 @@ void Maze::_init(Game* game)
     rooms[0].items.append(QSharedPointer<Gold>::create("Мешочек с золотом", "", -20));
     rooms[1].items.append(QSharedPointer<Food>::create("Обед", "+15 к здоровью", 15));
     rooms[2].items.append(QSharedPointer<Food>::create("Ужин", "+15 к здоровью", 15));
-
-
-    game->addEnemy(&rooms[1], new Enemy("Жирный паук", 3, 1, 0, 1, game));
 }
 
 Room& Maze::operator[](int index){

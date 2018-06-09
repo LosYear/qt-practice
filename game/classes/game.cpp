@@ -13,6 +13,8 @@ Game::Game(QString name) :
     hero.addItem(QSharedPointer<Food>::create("Хлем",
                                               "Увеличивает жизнь на 1",
                                               1));
+
+    addEnemy(&maze[1], new Enemy("Жирный паук", 3, 1, 0, 40, this));
 }
 
 void Game::peekItem(int itemIndex)
@@ -25,7 +27,7 @@ void Game::peekItem(int itemIndex)
 
 void Game::addEnemy(Room *room, Enemy *enemy)
 {
-    enemies[room] = enemy;
+    enemies.insert(room, enemy);
 }
 
 void Game::battle(Hero *hero, Enemy *enemy)
@@ -33,6 +35,13 @@ void Game::battle(Hero *hero, Enemy *enemy)
     Battle* b = new Battle(hero, enemy, this);
 
     emit battle_started(b);
+
+    if(enemy->isAlive() || !hero->isAlive()){
+        emit game_over(false);
+    }
+    else{
+        enemies.remove(&maze[hero->currentRoom]);
+    }
 }
 
 void Game::heroMoved(int room)
