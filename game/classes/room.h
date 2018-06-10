@@ -22,7 +22,7 @@ public:
 
     int operator[](Direction direction) const;
     void putItem(QSharedPointer<Item> item);
-    QList<QSharedPointer<Item>> visibleItems(Hero* hero) const;
+    QList<QSharedPointer<Item>> visibleItems() const;
     QSharedPointer<Item> peekItem(int index);
 };
 

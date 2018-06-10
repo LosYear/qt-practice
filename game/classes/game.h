@@ -16,8 +16,8 @@ class Game : public QObject
 public:
     Game(QString name);
 
-    Hero hero;
     Maze maze;
+    Hero hero;
 
     void peekItem(int itemIndex);
     void addEnemy(Room* room, Enemy* enemy);

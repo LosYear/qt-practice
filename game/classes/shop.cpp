@@ -6,8 +6,8 @@
 Shop::Shop()
 {
     items.append(QPair<int, QSharedPointer<Item>>(8, QSharedPointer<Item>::create("Бесполезная дорогая штука", "Удовлетворяет желание бездумно тратить деньги")));
-    items.append(QPair<int, QSharedPointer<Item>>(1, QSharedPointer<Food>::create("Хлеб", "+5", 5)));
-    items.append(QPair<int, QSharedPointer<Item>>(10, QSharedPointer<Food>::create("Болотный эликсир", "+7", 7)));
+    items.append(QPair<int, QSharedPointer<Item>>(1, QSharedPointer<Food>::create("Неправильный мёд", "+5", 5)));
+    items.append(QPair<int, QSharedPointer<Item>>(10, QSharedPointer<Food>::create("Печенька", "+7", 7)));
     items.append(QPair<int, QSharedPointer<Item>>(10, QSharedPointer<Food>::create("Яд", "Для отважных (-50)", -50)));
 
     items.append(QPair<int, QSharedPointer<Shield>>(10, QSharedPointer<Shield>::create("Кусок картона", "Защищает в решающих сражениях", 10)));

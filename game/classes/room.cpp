@@ -17,7 +17,7 @@ void Room::putItem(QSharedPointer<Item> item)
     items.append(item);
 }
 
-QList<QSharedPointer<Item> > Room::visibleItems(Hero *hero) const
+QList<QSharedPointer<Item> > Room::visibleItems() const
 {
     return items;
 }

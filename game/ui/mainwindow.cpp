@@ -44,6 +44,7 @@ void MainWindow::enterRoom(int roomNumber)
 
     // Set room info
     ui->roomDescriptionLabel->setText(game->maze[roomNumber].description);
+    ui->cityNameLabel->setText(game->maze[roomNumber].name);
 
     // Set directions
     const Room& room = game->maze[roomNumber];

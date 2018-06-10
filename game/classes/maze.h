@@ -13,7 +13,7 @@ public:
     QList<Room> rooms;
     Room& operator[](int index);
 private:
-    void _init(Game *game);
+    void _init();
     Game* game;
 };
 
